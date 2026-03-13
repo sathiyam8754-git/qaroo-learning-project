@@ -1,0 +1,138 @@
+<div class="main-container">
+  <div class="content-wrapper">
+    <!-- Left Panel - Education Image -->
+    <div class="left-panel">
+      <div class="education-image-container">
+        <img src="assets/education.webp" alt="Education" class="education-image">
+      </div>
+    </div>
+
+    <!-- Right Panel - Form -->
+    <div class="right-panel">
+      <div class="form-card">     
+        <form class="booking-form" [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+          <!-- Session Mode Selection -->
+          <div class="session-mode-section">
+            <label class="session-label">Select the Session Mode</label>
+            <div class="session-modes">
+              <button 
+                type="button" 
+                class="session-mode-btn" 
+                [class.active]="bookingForm.get('sessionMode')?.value === 'online'"
+                (click)="setSessionMode('online')"
+              >
+                Online
+              </button>
+              <button 
+                type="button" 
+                class="session-mode-btn" 
+                [class.active]="bookingForm.get('sessionMode')?.value === 'login'"
+                (click)="setSessionMode('login')"
+              >
+                Login
+              </button>
+            </div>
+          </div>
+          
+          <!-- Online Form Fields -->
+          <div *ngIf="bookingForm.get('sessionMode')?.value === 'online'">
+            <div class="form-group">
+              <label for="childName">Name of your Child</label>
+              <input 
+                type="text" 
+                id="childName" 
+                name="childName" 
+                class="form-input"
+                placeholder="Enter your child's name"
+                formControlName="childName"
+              />
+              <div class="error-message" *ngIf="bookingForm.get('childName')?.invalid && bookingForm.get('childName')?.touched">
+                {{ getErrorMessage('childName') }}
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="mobileNumber">Mobile Number</label>
+              <div class="mobile-input-group">
+                <input 
+                  type="tel" 
+                  id="mobileNumber" 
+                  name="mobileNumber" 
+                  class="form-input mobile-input"
+                  placeholder="Enter mobile number"
+                  formControlName="mobileNumber"
+                />
+              </div>
+              <div class="error-message" *ngIf="bookingForm.get('mobileNumber')?.invalid && bookingForm.get('mobileNumber')?.touched">
+                {{ getErrorMessage('mobileNumber') }}
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-input"
+                placeholder="Enter email address"
+                formControlName="email"
+              />
+              <div class="error-message" *ngIf="bookingForm.get('email')?.invalid && bookingForm.get('email')?.touched">
+                {{ getErrorMessage('email') }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Login Form Fields -->
+          <div *ngIf="bookingForm.get('sessionMode')?.value === 'login'">
+            <div class="form-group">
+              <label for="username">Email Address</label>
+              <input 
+                type="text" 
+                id="username" 
+                name="username" 
+                class="form-input"
+                placeholder="Enter email address"
+                formControlName="username"
+              />
+              <div class="error-message" *ngIf="bookingForm.get('username')?.invalid && bookingForm.get('username')?.touched">
+                {{ getErrorMessage('username') }}
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="password">Password</label>
+              <div class="password-container">
+                <input 
+                  type="password" 
+                  id="password" 
+                  name="password" 
+                  class="form-input"
+                  placeholder="Enter your password"
+                  formControlName="password"
+                />
+                <a href="#" class="forgot-password-link" (click)="forgotPassword($event)">Forgot Password?</a>
+              </div>
+              <div class="error-message" *ngIf="bookingForm.get('password')?.invalid && bookingForm.get('password')?.touched">
+                {{ getErrorMessage('password') }}
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="submit-btn">
+            <span *ngIf="bookingForm.get('sessionMode')?.value === 'online'">Schedule a Class</span>
+            <span *ngIf="bookingForm.get('sessionMode')?.value === 'login'">Login</span>
+            <span *ngIf="!bookingForm.get('sessionMode')?.value">Book Free Session</span>
+          </button>
+        </form>
+        
+        <div class="form-footer">
+          <p class="privacy-note">
+            <span class="icon">🔒</span>
+            Your information is secure and will never be shared
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+[build]
+  
+   command = "npm install -g @angular/cli && ng build"
+   publish = "dist/angular"
+   base ="/"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

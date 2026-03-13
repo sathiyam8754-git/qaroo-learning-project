@@ -1,0 +1,213 @@
+<div class="demo-dialog-overlay" *ngIf="show" (click)="onOverlayClick()">
+  <div class="demo-dialog-container" (click)="onDialogClick($event)">
+    <div class="demo-dialog-header">
+      <div class="header-left">
+        <img [src]="getCompanyLogo()" [alt]="getCompanyName()" class="company-logo">
+        <div class="company-info">
+          <h2>{{ getCompanyName() }}</h2>
+          <span class="header-subtitle">Schedule Your Demo Class</span>
+        </div>
+      </div>
+      <button class="close-btn" (click)="onCancel()">×</button>
+    </div>
+
+    <div class="demo-dialog-content">
+      <!-- Left Panel -->
+      <div class="left-panel">
+        <div class="video-section">
+          <div class="video-container">
+            <video 
+              #videoPlayer
+              width="100%" 
+              height="200" 
+              controls 
+              muted 
+              loop
+              [poster]="getPosterSrc()">
+              <source [src]="getVideoSrc()" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay" *ngIf="!isPlaying" (click)="toggleVideo()">
+              <div class="play-button">
+                <svg width="50" height="50" viewBox="0 0 24 24" fill="white">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <h3>{{ getVideoTitle() }}</h3>
+          <p>{{ getVideoDescription() }}</p>
+          <div class="video-controls">
+            <button class="video-btn" (click)="toggleVideo()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" *ngIf="!isPlaying">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" *ngIf="isPlaying">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+              </svg>
+              {{ isPlaying ? 'Pause Video' : 'Play Video' }}
+            </button>
+            <button class="video-btn secondary" (click)="restartVideo()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+              </svg>
+              Restart
+            </button>
+          </div>
+        </div>
+
+        <div class="booking-form">
+          <h4>Select Your Slot</h4>
+          <form [formGroup]="demoForm" (ngSubmit)="onSubmit()">
+            <!-- Step 1: Select Month Duration -->
+            <div class="form-group">
+              <label>Select Duration</label>
+              <div class="duration-options">
+                <div 
+                  *ngFor="let duration of durationOptions" 
+                  class="duration-item"
+                  [class.selected]="demoForm.value.duration === duration.value"
+                  (click)="selectDuration(duration.value)">
+                  <div class="duration-icon">{{ duration.icon }}</div>
+                  <div class="duration-info">
+                    <div class="duration-title">{{ duration.title }}</div>
+                    <div class="duration-desc">{{ duration.description }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Select Day Type (shown after duration selection) -->
+            <div class="form-group" *ngIf="demoForm.value.duration">
+              <label>Select Day Type</label>
+              <div class="day-type-options">
+                <div 
+                  class="day-type-item"
+                  [class.selected]="demoForm.value.dayType === 'weekday'"
+                  (click)="selectDayType('weekday')">
+                  <div class="day-type-icon">📅</div>
+                  <div class="day-type-info">
+                    <div class="day-type-title">Weekday</div>
+                    <div class="day-type-desc">Monday - Friday</div>
+                  </div>
+                </div>
+                <div 
+                  class="day-type-item"
+                  [class.selected]="demoForm.value.dayType === 'weekend'"
+                  (click)="selectDayType('weekend')">
+                  <div class="day-type-icon">🌟</div>
+                  <div class="day-type-info">
+                    <div class="day-type-title">Weekend</div>
+                    <div class="day-type-desc">Saturday - Sunday</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Select Time Slots (shown after day type selection) -->
+            <div class="form-group" *ngIf="demoForm.value.dayType">
+              <label>Available Time Slots</label>
+              <div class="day-indicator">
+                <span class="day-type">{{ getSelectedDayTypeText() }}</span>
+                <span class="day-description">{{ getSelectedDayTypeDescription() }}</span>
+              </div>
+              <div class="slots-grid">
+                <div 
+                  *ngFor="let slot of currentAvailableSlots" 
+                  class="slot-item"
+                  [class.selected]="demoForm.value.selectedSlot === slot"
+                  (click)="demoForm.get('selectedSlot')?.setValue(slot)">
+                  {{ slot }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="additionalInfo">Additional Information (Optional)</label>
+              <textarea 
+                id="additionalInfo"
+                class="form-textarea"
+                placeholder="Any specific topics you'd like to cover..."
+                formControlName="additionalInfo"
+                rows="3">
+              </textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" [disabled]="!demoForm.valid">
+              Confirm Booking
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right Panel - Course Details -->
+      <div class="right-panel">
+        <div class="course-details" *ngIf="isBookingComplete()">
+          <h3>Course Details & Fees</h3>
+          
+          <!-- Course Overview -->
+          <div class="course-overview">
+            <div class="course-header">
+              <div class="course-badge">DEMO CLASS</div>
+              <h4>{{ data.courseTitle }}</h4>
+              <div class="course-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-text">(4.8/5 • 2,341 students)</span>
+              </div>
+            </div>
+            
+            <div class="course-highlights">
+              <div class="highlight-item">
+                <span class="highlight-icon">🎯</span>
+                <span>Live Interactive Sessions</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">👨‍🏫</span>
+                <span>Expert Faculty</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">📚</span>
+                <span>Comprehensive Study Material</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">🏆</span>
+                <span>Certificate of Completion</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pricing Plans -->
+          <div class="pricing-section">
+            <h4>Course Enrollment</h4>
+            
+            <div class="pricing-card enterprise">
+              <div class="pricing-header">
+                <h5>Annual Plan</h5>
+                <div class="price">
+                  <span class="currency">₹</span>
+                  <span class="amount">49,999</span>
+                  <span class="period">/year</span>
+                </div>
+                <span class="price-desc">Best value - Save ₹9,989</span>
+              </div>
+              <ul class="pricing-features">
+                <li>Unlimited Live Classes</li>
+                <li>Recorded Sessions Access</li>
+                <li>Personal Mentorship</li>
+                <li>Complete Study Materials</li>
+                <li>Mock Tests & Assessments</li>
+                <li>24/7 Doubt Support</li>
+                <li>Placement Assistance</li>
+                <li>Industry Recognized Certificate</li>
+                <li>1-on-1 Sessions</li>
+                <li>Priority Support</li>
+                <li>Guaranteed Placement</li>
+                <li>Lifetime Access</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+/* Three color scheme from the image */
+:root {
+  --blue-primary: #1976d2;      /* Blue from main header */
+  --white-background: #ffffff;   /* White for cards */
+  --light-green-teal: #e0f2f1;   /* Light green/teal background */
+}
+
+.overall-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Company Header Styles */
+.company-header {
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+  color: white;
+  padding: 24px 0;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.company-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.company-logo:hover {
+  opacity: 1;
+}
+
+.company-info h1 {
+  margin: 0 0 8px 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: color 0.3s ease;
+}
+
+.company-info h1:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.company-info p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.company-info p:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.components-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  width: 100%;
+  padding: 0 20px 20px;
+}
+
+.components-grid > * {
+  width: 100%;
+  min-height: 400px;
+}
