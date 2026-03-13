@@ -37,17 +37,17 @@
           <!-- Online Form Fields -->
           <div *ngIf="bookingForm.get('sessionMode')?.value === 'online'">
             <div class="form-group">
-              <label for="studentName">Name of The Student</label>
+              <label for="childName">Name of your Child</label>
               <input 
                 type="text" 
-                id="studentName" 
-                name="studentName" 
+                id="childName" 
+                name="childName" 
                 class="form-input"
-                placeholder="Enter the student's name"
-                formControlName="studentName"
+                placeholder="Enter your child's name"
+                formControlName="childName"
               />
-              <div class="error-message" *ngIf="bookingForm.get('studentName')?.invalid && bookingForm.get('studentName')?.touched">
-                {{ getErrorMessage('studentName') }}
+              <div class="error-message" *ngIf="bookingForm.get('childName')?.invalid && bookingForm.get('childName')?.touched">
+                {{ getErrorMessage('childName') }}
               </div>
             </div>
             

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
 export interface FormData {
   sessionMode: string;
-  studentName?: string;
+  childName?: string;
   mobileNumber?: string;
   email?: string;
   username?: string;
@@ -33,7 +33,7 @@ export class StudentEntryModelComponent implements OnInit {
   initializeForm(): void {
     this.bookingForm = this.fb.group({
       sessionMode: ['online', Validators.required],
-      studentName: [''],
+      childName: [''],
       mobileNumber: [''],
       email: [''],
       username: [''],
@@ -69,7 +69,7 @@ export class StudentEntryModelComponent implements OnInit {
     const sessionMode = this.bookingForm.get('sessionMode')?.value;
 
     if (sessionMode === 'online') {
-      return ['studentName', 'mobileNumber', 'email'].includes(controlName);
+      return ['childName', 'mobileNumber', 'email'].includes(controlName);
     } else if (sessionMode === 'login') {
       return ['username', 'password'].includes(controlName);
     }
@@ -82,9 +82,9 @@ export class StudentEntryModelComponent implements OnInit {
     const sessionMode = this.bookingForm.get('sessionMode')?.value;
 
     if (sessionMode === 'online') {
-      const onlineFields = ['studentName', 'mobileNumber', 'email'];
+      const onlineFields = ['childName', 'mobileNumber', 'email'];
       return this.validateFields(onlineFields, {
-        studentName: [Validators.required, Validators.minLength(2)],
+        childName: [Validators.required, Validators.minLength(2)],
         mobileNumber: [Validators.required, Validators.pattern('^[0-9]{10}$')],
         email: [Validators.required, Validators.email]
       });
@@ -135,7 +135,7 @@ export class StudentEntryModelComponent implements OnInit {
         }
       });
     } else if (sessionMode === 'login') {
-      const onlineFields = ['studentName', 'mobileNumber', 'email'];
+      const onlineFields = ['childName', 'mobileNumber', 'email'];
       onlineFields.forEach(fieldName => {
         const control = this.bookingForm.get(fieldName);
         if (control) {
@@ -149,7 +149,7 @@ export class StudentEntryModelComponent implements OnInit {
   private getFieldLabel(controlName: string): string {
     const labels: { [key: string]: string } = {
       sessionMode: 'Session mode',
-      studentName: "Child's name",
+      childName: "Child's name",
       mobileNumber: 'Mobile number',
       email: 'Email address',
       username: 'Username',
@@ -168,7 +168,7 @@ export class StudentEntryModelComponent implements OnInit {
       const formData: FormData = {
         sessionMode: this.bookingForm.get('sessionMode')?.value || '',
         ...(this.bookingForm.get('sessionMode')?.value === 'online' && {
-          studentName: this.bookingForm.get('studentName')?.value,
+          childName: this.bookingForm.get('childName')?.value,
           mobileNumber: this.bookingForm.get('mobileNumber')?.value,
           email: this.bookingForm.get('email')?.value
         }),
@@ -200,7 +200,7 @@ export class StudentEntryModelComponent implements OnInit {
 
       } else {
         let obj = {
-          "username": this.bookingForm.value.studentName,
+          "username": this.bookingForm.value.childName,
           "email": this.bookingForm.value.email,
           "mobile": this.bookingForm.value.mobileNumber
         }
@@ -250,7 +250,7 @@ export class StudentEntryModelComponent implements OnInit {
     const sessionMode = this.bookingForm.get('sessionMode')?.value;
 
     if (sessionMode === 'online') {
-      const onlineFields = ['studentName', 'mobileNumber', 'email'];
+      const onlineFields = ['childName', 'mobileNumber', 'email'];
       onlineFields.forEach(fieldName => {
         const control = this.bookingForm.get(fieldName);
         if (control) {
