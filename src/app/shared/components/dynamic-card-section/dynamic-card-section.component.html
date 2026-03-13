@@ -1,0 +1,25 @@
+<div class="dynamic-card-container">
+  <!-- Dynamic Sections -->
+  <section class="card-section" *ngFor="let section of sections">
+    <div class="section-header">
+      <h2>{{ section.title }}</h2>
+      <p>{{ section.subtitle }}</p>
+    </div>
+    
+    <div class="cards-container">
+      <!-- Dynamic Cards -->
+      <div class="dynamic-card" *ngFor="let card of section.cards">
+        <div class="card-image">
+          <img [src]="card.image" [alt]="card.title">
+        </div>
+        <div class="card-content">
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+          <button class="dynamic-btn" (click)="onCardClick(section.id, card.id)">
+            {{ card.buttonText }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

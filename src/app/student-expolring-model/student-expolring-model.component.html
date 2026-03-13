@@ -1,0 +1,55 @@
+<div class="explore-container">
+  <!-- First Section: Advantages -->
+  <section class="advantages-section">
+    <h2 class="section-title advantages-title">Our Advantages</h2>
+    <div class="advantages-grid">
+      <!-- Advantages using advantages1,2,3 images -->
+      <div class="advantage-item" *ngFor="let advantage of advantages">
+        <div class="advantage-image">
+          <img [src]="advantage.image" [alt]="advantage.title">
+        </div>
+        <div class="advantage-content">
+          <h3>{{ advantage.title }}</h3>
+          <p>{{ advantage.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Second Section: Exploring - Exact Card Design -->
+  <section class="exploring-section">
+    <h2 class="section-title exploring-title">Explore Learning</h2>
+    
+    <!-- Scrollable Container with Exact Design -->
+    <div class="scrollable-container">
+      <!-- Navigation Arrows -->
+      <div class="nav-arrow nav-left" (click)="scrollLeft()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="nav-arrow nav-right" (click)="scrollRight()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      
+      <!-- Scrollable Cards -->
+      <div class="scrollable-cards" #scrollableCards>
+        <!-- Exploring items using other asset images -->
+        <div class="explore-card" *ngFor="let item of exploreItems">
+          <div class="explore-card-image">
+            <img [src]="item.image" [alt]="item.title">
+          </div>
+          <div class="explore-card-content">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+            <button class="explore-card-button" (click)="onExploreClick(item.id)">
+              {{ item.buttonText }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

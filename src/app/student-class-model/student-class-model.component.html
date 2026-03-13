@@ -1,0 +1,43 @@
+<div class="page-container">
+  <!-- Header Section -->
+  <header class="page-header">
+    <h1>Student Programs</h1>
+    <p>Choose your learning path and start your educational journey</p>
+  </header>
+
+  <!-- Programs Grid -->
+  <main class="programs-section">
+    <div class="cards-grid">
+      <!-- Dynamic cards using ngFor -->
+      <article class="program-card" *ngFor="let card of programCards">
+        <div class="card-image-container">
+          <img [src]="card.image" [alt]="card.title" class="card-image">
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">{{ card.title }}</h3>
+          <p class="card-description">{{ card.description }}</p>
+          <button class="card-button" (click)="onCardClick(card.id)">
+            {{ card.buttonText }}
+          </button>
+        </div>
+      </article>
+    </div>
+  </main>
+</div>
+
+<!-- Student Details Dialog -->
+<app-student-details-dialog 
+  [show]="showStudentDialog" 
+  [data]="dialogData"
+  (close)="onDialogClose()"
+  (submit)="onDialogSubmit($event)"
+  (openDemoClass)="onOpenDemoClass($event)">
+</app-student-details-dialog>
+
+<!-- Demo Class Dialog -->
+<app-demo-class-dialog 
+  [show]="showDemoClassDialog" 
+  [data]="demoClassData"
+  (close)="onDemoClassDialogClose()"
+  (submit)="onDemoClassDialogSubmit($event)">
+</app-demo-class-dialog>

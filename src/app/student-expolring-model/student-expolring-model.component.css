@@ -1,0 +1,591 @@
+/* Explore Container */
+.explore-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Section Titles */
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+
+/* First Section: Advantages - Attracting Colors */
+.advantages-section {
+  margin-bottom: 80px;
+ background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  padding: 60px 40px;
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.08);
+}
+
+.advantages-section::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float-advantage 25s infinite ease-in-out;
+}
+
+.advantages-section::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(118, 75, 162, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float-advantage 30s infinite ease-in-out reverse;
+}
+
+@keyframes float-advantage {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(20px, -20px) rotate(180deg); }
+}
+
+.advantages-title {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: title-gradient 4s ease infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes title-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  justify-items: center;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+/* Advantage Item - Enhanced with Attracting Colors */
+.advantage-item {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+  border-radius: 24px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.12);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 380px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(102, 126, 234, 0.1);
+}
+
+.advantage-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+  background-size: 200% 100%;
+  animation: card-gradient 3s ease infinite;
+  border-radius: 24px 24px 0 0;
+}
+
+@keyframes card-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.advantage-item:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(102, 126, 234, 0.2);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+/* Advantage Image - Enhanced */
+.advantage-image {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 25px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 6px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.25);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.advantage-image::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  background: linear-gradient(135deg, #667eea, #764ba2, #667eea);
+  background-size: 200% 200%;
+  border-radius: 50%;
+  z-index: -1;
+  animation: border-gradient 3s ease infinite;
+}
+
+@keyframes border-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.advantage-item:hover .advantage-image {
+  transform: scale(1.08) rotate(5deg);
+  box-shadow: 0 18px 45px rgba(118, 75, 162, 0.35);
+}
+
+.advantage-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  filter: saturate(1.1);
+}
+
+.advantage-item:hover .advantage-image img {
+  transform: scale(1.1);
+  filter: saturate(1.2) brightness(1.05);
+}
+
+/* Advantage Content - Enhanced */
+.advantage-content h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  line-height: 1.3;
+  position: relative;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.advantage-content h3::after {
+  content: '';
+  display: block;
+  width: 70px;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  margin: 15px auto 0;
+  border-radius: 3px;
+  animation: underline-pulse 2s ease infinite;
+}
+
+@keyframes underline-pulse {
+  0%, 100% { transform: scaleX(1); opacity: 1; }
+  50% { transform: scaleX(0.8); opacity: 0.7; }
+}
+
+.advantage-content p {
+  font-size: 1.05rem;
+  color: #5a6c7d;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.advantage-item:hover .advantage-content p {
+  color: #4a5568;
+}
+
+/* Second Section: Exploring - Attracting Colors */
+.exploring-section {
+  margin-bottom: 40px;
+background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  padding: 60px 20px;
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.exploring-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+  animation: float 20s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-30px, -30px) rotate(180deg); }
+}
+
+.exploring-title {
+  background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #45B7D1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 1;
+}
+
+/* Scrollable Container with Attracting Colors */
+.scrollable-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 70px; /* Space for arrows */
+  z-index: 1;
+}
+
+/* Navigation Arrows - Attracting Colors */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 30px rgba(255, 107, 107, 0.4);
+  z-index: 10;
+  color: white;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.nav-arrow:hover {
+  transform: translateY(-50%) scale(1.15) rotate(5deg);
+  box-shadow: 0 12px 40px rgba(255, 107, 107, 0.6);
+  background: linear-gradient(135deg, #FF5252 0%, #26D0CE 100%);
+}
+
+.nav-arrow:active {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.nav-left {
+  left: 0;
+}
+
+.nav-right {
+  right: 0;
+}
+
+/* Scrollable Cards - Attracting Colors */
+.scrollable-cards {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 30px 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollable-cards::-webkit-scrollbar {
+  display: none;
+}
+
+/* Explore Card - Attracting Colors */
+.explore-card {
+  flex: 0 0 300px;
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.explore-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1, #FF6B6B);
+  background-size: 300% 100%;
+  animation: gradient-shift 3s ease infinite;
+  border-radius: 20px 20px 0 0;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.explore-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 25px 60px rgba(102, 126, 234, 0.25);
+  border-color: rgba(255, 107, 107, 0.3);
+}
+
+/* Explore Card Image - Attracting Colors */
+.explore-card-image {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+}
+
+.explore-card-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.2) 0%, rgba(78, 205, 196, 0.2) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.explore-card:hover .explore-card-image::after {
+  opacity: 1;
+}
+
+.explore-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: saturate(1.1);
+}
+
+.explore-card:hover .explore-card-image img {
+  transform: scale(1.1) rotate(2deg);
+  filter: saturate(1.2) brightness(1.1);
+}
+
+/* Explore Card Content - Attracting Colors */
+.explore-card-content {
+  padding: 25px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 255, 0.95) 100%);
+  position: relative;
+}
+
+.explore-card-content h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  line-height: 1.3;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.explore-card-content p {
+  font-size: 0.95rem;
+  color: #5a6c7d;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+/* Explore Card Button - Attracting Colors */
+.explore-card-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.explore-card-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.6s;
+}
+
+.explore-card-button:hover::before {
+  left: 100%;
+}
+
+.explore-card-button:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+}
+
+.explore-card-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .explore-container {
+    padding: 30px 20px;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+  }
+  
+  .advantages-section {
+    padding: 40px 25px;
+    margin-bottom: 60px;
+  }
+  
+  .advantages-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  
+  .advantage-item {
+    max-width: 100%;
+    padding: 35px 25px;
+  }
+  
+  .advantage-image {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .exploring-section {
+    padding: 40px 15px;
+  }
+  
+  .scrollable-container {
+    padding: 0 60px;
+  }
+  
+  .nav-arrow {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .explore-card {
+    flex: 0 0 280px;
+  }
+  
+  .explore-card-image {
+    height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-container {
+    padding: 25px 15px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 35px;
+  }
+  
+  .advantages-section {
+    padding: 30px 20px;
+    margin-bottom: 50px;
+  }
+  
+  .advantages-grid {
+    gap: 30px;
+  }
+  
+  .advantage-item {
+    padding: 30px 20px;
+  }
+  
+  .advantage-image {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 20px;
+  }
+  
+  .advantage-content h3 {
+    font-size: 1.4rem;
+  }
+  
+  .exploring-section {
+    padding: 30px 10px;
+  }
+  
+  .scrollable-container {
+    padding: 0 50px;
+  }
+  
+  .nav-arrow {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .explore-card {
+    flex: 0 0 250px;
+  }
+  
+  .explore-card-image {
+    height: 120px;
+  }
+  
+  .explore-card-content {
+    padding: 20px;
+  }
+  
+  .explore-card-content h3 {
+    font-size: 1.1rem;
+  }
+  
+  .explore-card-content p {
+    font-size: 0.9rem;
+  }
+  
+  .explore-card-button {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+}
