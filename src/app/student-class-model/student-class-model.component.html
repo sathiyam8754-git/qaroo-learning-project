@@ -75,16 +75,7 @@
          *ngFor="let p of filteredPrograms"
          [class.card-featured]="p.featured">
 
-      <!-- Featured ribbon -->
-      <div class="featured-ribbon" *ngIf="p.featured">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25 1.18-6.88-5-4.87 6.91-1.01L12 2z"
-                fill="#F59E0B"/>
-        </svg>
-        Featured
-      </div>
-
-      <!-- Card header -->
+          <!-- Card header -->
       <div class="card-header">
         <div class="card-icon-wrap">
           <span class="card-icon">{{ p.icon }}</span>
