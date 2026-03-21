@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentDetailsDialogResult } from '../shared/components/student-details-dialog/student-details-dialog.component';
+import { NotificationService } from '../shared/services/notification.service';
 
 interface Program {
   id: number;
@@ -61,7 +62,7 @@ export class StudentClassModelComponent implements OnInit {
       rating: 4.8,
       ratingCount: '(1.2K)',
       tags: ['Algebra', 'Calculus', 'Statistics'],
-      ctaLabel: 'Enroll Now',
+      ctaLabel: 'Explore Now',
       featured: true
     },
     {
@@ -81,7 +82,7 @@ export class StudentClassModelComponent implements OnInit {
       rating: 4.6,
       ratingCount: '(876)',
       tags: ['Physics', 'Chemistry', 'Biology'],
-      ctaLabel: 'Enroll Now',
+      ctaLabel: 'Explore Now',
       featured: false
     },
     {
@@ -101,7 +102,7 @@ export class StudentClassModelComponent implements OnInit {
       rating: 4.7,
       ratingCount: '(654)',
       tags: ['Grammar', 'Writing', 'Literature'],
-      ctaLabel: 'Enroll Now',
+      ctaLabel: 'Explore Now',
       featured: false
     },
     {
@@ -121,7 +122,7 @@ export class StudentClassModelComponent implements OnInit {
       rating: 4.9,
       ratingCount: '(3.1K)',
       tags: ['JEE Main', 'JEE Advanced', 'Mock Tests'],
-      ctaLabel: 'Enroll Now',
+      ctaLabel: 'Explore Now',
       featured: true
     },
     {
@@ -141,7 +142,7 @@ export class StudentClassModelComponent implements OnInit {
       rating: 4.8,
       ratingCount: '(2.4K)',
       tags: ['Biology', 'NCERT', 'Mock Tests'],
-      ctaLabel: 'Enroll Now',
+      ctaLabel: 'Explore Now',
       featured: false
     },
     {
@@ -161,10 +162,13 @@ export class StudentClassModelComponent implements OnInit {
       rating: 4.7,
       ratingCount: '(980)',
       tags: ['GS Paper', 'Current Affairs', 'Essay'],
-      ctaLabel: 'Enroll Now',
+      ctaLabel: 'Explore Now',
       featured: false
     }
   ];
+
+
+  constructor( private notification: NotificationService,) { }
 
   get filteredPrograms(): Program[] {
     return this.programs.filter(p => {
@@ -205,11 +209,15 @@ export class StudentClassModelComponent implements OnInit {
   // Dialog handlers (preserved)
   onDialogClose(): void {
     this.showStudentDialog = false;
+    this.dialogData = {};
   }
 
   onDialogSubmit(result: any): void {
+    
     console.log('Student details submitted:', result);
+    this.notification.success('Student details submitted successfully!');
     this.showStudentDialog = false;
+    // this.dialogData = {};
   }
 
   onOpenDemoClass(result: StudentDetailsDialogResult): void {
@@ -217,7 +225,7 @@ export class StudentClassModelComponent implements OnInit {
     this.showStudentDialog = false;
     setTimeout(() => {
       this.showDemoClassDialog = true;
-    }, 300);
+    }, 500);
   }
 
   onDemoClassDialogClose(): void {
@@ -226,8 +234,10 @@ export class StudentClassModelComponent implements OnInit {
 
   onDemoClassDialogSubmit(result: any): void {
     console.log('Demo class booking submitted:', result);
+    this.notification.success('Demo class booked successfully!');
     this.showDemoClassDialog = false;
   }
 
   ngOnInit(): void {}
+  
 }
