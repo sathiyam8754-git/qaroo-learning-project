@@ -1,84 +1,592 @@
-/* Three color scheme from the image */
-:root {
-  --blue-primary: #1976d2;      /* Blue from main header */
-  --white-background: #ffffff;   /* White for cards */
-  --light-green-teal: #e0f2f1;   /* Light green/teal background */
+/* ═══════════════════════════════════════
+   OVERALL LAYOUT — Dark Premium Theme
+   ═══════════════════════════════════════ */
+
+:host {
+  display: block;
+  background: #0f0a1e;
+  min-height: 100vh;
 }
 
 .overall-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0;
-}
-
-/* Company Header Styles */
-.company-header {
-  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
-  color: white;
-  padding: 24px 0;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.header-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.company-logo {
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
-  object-fit: cover;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-}
-
-.company-logo:hover {
-  opacity: 1;
-}
-
-.company-info h1 {
-  margin: 0 0 8px 0;
-  font-size: 2rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.85);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: color 0.3s ease;
-}
-
-.company-info h1:hover {
-  color: rgba(255, 255, 255, 1);
-}
-
-.company-info p {
+  max-width: 100%;
   margin: 0;
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.75);
-  font-weight: 400;
-  transition: color 0.3s ease;
-}
-
-.company-info p:hover {
-  color: rgba(255, 255, 255, 0.9);
+  padding: 0;
+  background: #0f0a1e;
 }
 
 .components-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
   width: 100%;
-  padding: 0 20px 20px;
+  padding: 0;
 }
 
 .components-grid > * {
   width: 100%;
-  min-height: 400px;
+  min-height: auto;
+}
+
+/* ═══════════════════════════════════════
+   DARK THEME — Child Component Overrides
+   Using ::ng-deep to pierce encapsulation
+   ═══════════════════════════════════════ */
+
+/* ─── STUDENT PROGRAMS (Class Model) ─── */
+::ng-deep app-student-class-model {
+  display: block;
+  background: #130f23;
+}
+
+::ng-deep app-student-class-model .programs-page {
+  background: #130f23;
+}
+
+::ng-deep app-student-class-model .page-header {
+  background: linear-gradient(135deg, #1a1a3e 0%, #2d1b69 50%, #1a1a3e 100%);
+}
+
+::ng-deep app-student-class-model .filter-bar {
+  background: #130f23;
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+::ng-deep app-student-class-model .filter-tab {
+  color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.12);
+  background: transparent;
+}
+
+::ng-deep app-student-class-model .filter-tab:hover {
+  color: #a78bfa;
+  border-color: #6B4EFF;
+  background: rgba(107, 78, 255, 0.08);
+}
+
+::ng-deep app-student-class-model .filter-active {
+  background: #6B4EFF;
+  color: #ffffff;
+  border-color: #6B4EFF;
+}
+
+::ng-deep app-student-class-model .filter-active:hover {
+  background: #5537e0;
+  color: #ffffff;
+  border-color: #5537e0;
+}
+
+::ng-deep app-student-class-model .search-input {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+::ng-deep app-student-class-model .search-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+::ng-deep app-student-class-model .search-input:focus {
+  border-color: rgba(107, 78, 255, 0.5);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 0 3px rgba(107, 78, 255, 0.1);
+}
+
+::ng-deep app-student-class-model .search-ico circle,
+::ng-deep app-student-class-model .search-ico path {
+  stroke: rgba(255, 255, 255, 0.35);
+}
+
+::ng-deep app-student-class-model .results-count {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+::ng-deep app-student-class-model .programs-grid {
+  background: transparent;
+}
+
+::ng-deep app-student-class-model .program-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+::ng-deep app-student-class-model .program-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(107, 78, 255, 0.2);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+
+::ng-deep app-student-class-model .card-featured {
+  border-color: rgba(107, 78, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(107, 78, 255, 0.1);
+}
+
+::ng-deep app-student-class-model .featured-ribbon {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+
+::ng-deep app-student-class-model .card-icon-wrap {
+  background: rgba(107, 78, 255, 0.12);
+}
+
+::ng-deep app-student-class-model .card-category {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+::ng-deep app-student-class-model .card-title {
+  color: #ffffff;
+}
+
+::ng-deep app-student-class-model .card-subtitle {
+  color: #a78bfa;
+}
+
+::ng-deep app-student-class-model .card-desc {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+::ng-deep app-student-class-model .tag {
+  background: rgba(107, 78, 255, 0.12);
+  color: #a78bfa;
+  border-color: rgba(107, 78, 255, 0.2);
+}
+
+::ng-deep app-student-class-model .card-meta {
+  border-top-color: rgba(255, 255, 255, 0.06);
+}
+
+::ng-deep app-student-class-model .meta-item {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+::ng-deep app-student-class-model .meta-item svg circle,
+::ng-deep app-student-class-model .meta-item svg path {
+  stroke: rgba(255, 255, 255, 0.35);
+}
+
+::ng-deep app-student-class-model .meta-dot {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+::ng-deep app-student-class-model .rating-val {
+  color: #ffffff;
+}
+
+::ng-deep app-student-class-model .rating-cnt {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+::ng-deep app-student-class-model .enroll-btn {
+  border-color: rgba(107, 78, 255, 0.4);
+  color: #a78bfa;
+  background: rgba(107, 78, 255, 0.08);
+}
+
+::ng-deep app-student-class-model .enroll-btn:hover {
+  background: #6B4EFF;
+  color: #ffffff;
+  border-color: #6B4EFF;
+}
+
+::ng-deep app-student-class-model .enroll-featured {
+  background: #6B4EFF;
+  color: #ffffff;
+  border-color: #6B4EFF;
+}
+
+::ng-deep app-student-class-model .enroll-featured:hover {
+  background: #5537e0;
+  border-color: #5537e0;
+}
+
+::ng-deep app-student-class-model .empty-state p {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+::ng-deep app-student-class-model .reset-search-btn {
+  border-color: #6B4EFF;
+  color: #a78bfa;
+}
+
+::ng-deep app-student-class-model .reset-search-btn:hover {
+  background: #6B4EFF;
+  color: #ffffff;
+}
+
+/* ─── EXPLORE LEARNING (Expolring Model) ─── */
+::ng-deep app-student-expolring-model {
+  display: block;
+  background: #0f0a1e;
+}
+
+::ng-deep app-student-expolring-model .explore-container {
+  background: #0f0a1e;
+}
+
+::ng-deep app-student-expolring-model .explore-sec {
+  background: #0f0a1e;
+}
+
+::ng-deep app-student-expolring-model .sec-title {
+  color: #ffffff;
+}
+
+::ng-deep app-student-expolring-model .sec-sub {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+::ng-deep app-student-expolring-model .prog-tab {
+  color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.12);
+  background: transparent;
+}
+
+::ng-deep app-student-expolring-model .prog-tab:hover {
+  color: #a78bfa;
+  border-color: #6B4EFF;
+  background: rgba(107, 78, 255, 0.08);
+}
+
+::ng-deep app-student-expolring-model .prog-tab--active {
+  background: #6B4EFF;
+  color: #ffffff;
+  border-color: #6B4EFF;
+}
+
+::ng-deep app-student-expolring-model .prog-tab--active:hover {
+  background: #5537e0;
+  border-color: #5537e0;
+  color: #ffffff;
+}
+
+/* Left card inside teal container — keep white */
+::ng-deep app-student-expolring-model .left-card {
+  background: #ffffff;
+}
+
+/* Course cards inside teal container — keep white */
+::ng-deep app-student-expolring-model .course-card {
+  background: #ffffff;
+}
+
+/* Advantages section — white theme, no dark overrides */
+::ng-deep app-student-expolring-model .advantages-section {
+  background: #ffffff;
+}
+
+/* ─── CONTACT / ABOUT (Contact Model) ─── */
+::ng-deep app-student-contact-model {
+  display: block;
+  background: #ffffff;
+}
+
+::ng-deep app-student-contact-model .about-page {
+  background: #ffffff;
+}
+
+/* Hero stays dark — it has its own dark bg */
+
+/* Why Choose Us — white */
+::ng-deep app-student-contact-model .why-section {
+  background: #ffffff;
+}
+
+/* Pillars section — white */
+::ng-deep app-student-contact-model .pillars-section {
+  background: #ffffff;
+}
+
+::ng-deep app-student-contact-model .pillar-card {
+  background: #ffffff;
+  border-color: #eeedf5;
+}
+
+::ng-deep app-student-contact-model .pillar-card:hover {
+  background: #ffffff;
+  border-color: rgba(91, 79, 232, 0.15);
+  box-shadow: 0 16px 48px rgba(91, 79, 232, 0.08);
+}
+
+::ng-deep app-student-contact-model .pillar-icon {
+  background: #f5f3ff;
+}
+
+::ng-deep app-student-contact-model .pillar-title {
+  color: #1a1a2e;
+}
+
+::ng-deep app-student-contact-model .pillar-desc {
+  color: #6B6585;
+}
+
+::ng-deep app-student-contact-model .section-heading {
+  color: #1a1a2e;
+}
+
+::ng-deep app-student-contact-model .section-eyebrow {
+  color: #5B4FE8;
+}
+
+/* ═══════════════════════════════════════
+   CONTACT FOOTER SECTION
+   ═══════════════════════════════════════ */
+
+.contact-footer-sec {
+  background: #12122a;
+  position: relative;
+  overflow: hidden;
+  padding: 60px 0 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.cf-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cf-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px 56px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+/* Brand column */
+.cf-brand-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cf-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cf-logo-icon {
+  flex-shrink: 0;
+}
+
+.cf-logo-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cf-logo-name {
+  font-size: 22px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 2px;
+  line-height: 1.1;
+}
+
+.cf-logo-sub {
+  font-size: 12px;
+  color: #FFD700;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.cf-brand-desc {
+  font-size: 14px;
+  color: rgba(200, 200, 224, 0.8);
+  line-height: 1.75;
+  max-width: 300px;
+  margin: 0;
+}
+
+/* Social icons */
+.cf-socials {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.cf-social-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 90, 0, 0.55);
+  background: rgba(255, 90, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cf-social-btn:hover {
+  background: rgba(255, 90, 0, 0.22);
+  border-color: rgba(255, 90, 0, 0.9);
+  transform: translateY(-2px);
+}
+
+/* Office columns */
+.cf-office-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cf-office-head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cf-office-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+  margin: 0;
+}
+
+.cf-title-underline {
+  width: 48px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #e74c3c 0%, #f39c12 100%);
+}
+
+/* Contact list */
+.cf-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cf-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.cf-contact-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 215, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.cf-contact-text {
+  font-size: 14px;
+  color: rgba(200, 200, 224, 0.85);
+  line-height: 1.7;
+  margin: 0;
+  padding-top: 6px;
+}
+
+/* Copyright bar */
+.cf-copyright {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 18px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cf-copyright span {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.cf-copy-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cf-copy-link {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.35);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.cf-copy-link:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.cf-copy-sep {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 13px;
+}
+
+/* Contact footer responsive */
+@media (max-width: 960px) {
+  .cf-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 0 32px 48px;
+  }
+
+  .cf-brand-col {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 28px;
+  }
+
+  .cf-brand-desc {
+    max-width: 100%;
+  }
+
+  .cf-copyright {
+    padding: 16px 32px;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cf-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 0 20px 40px;
+  }
+
+  .cf-brand-col {
+    grid-column: auto;
+    flex-direction: column;
+  }
+
+  .cf-office-title {
+    font-size: 18px;
+  }
+
+  .cf-logo-name {
+    font-size: 18px;
+  }
+
+  .cf-copyright {
+    padding: 14px 20px;
+  }
 }

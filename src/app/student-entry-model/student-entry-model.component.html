@@ -1,138 +1,221 @@
-<div class="main-container">
-  <div class="content-wrapper">
-    <!-- Left Panel - Education Image -->
-    <div class="left-panel">
-      <div class="education-image-container">
-        <img src="assets/education.webp" alt="Education" class="education-image">
-      </div>
+<div class="se-page">
+
+  <!-- LEFT: Hero -->
+  <div class="se-left">
+
+    <div class="trust-badge">
+      <span class="trust-dot"></span>
+      Trusted by 50,000+ students across India
     </div>
 
-    <!-- Right Panel - Form -->
-    <div class="right-panel">
-      <div class="form-card">     
-        <form class="booking-form" [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
-          <!-- Session Mode Selection -->
-          <div class="session-mode-section">
-            <label class="session-label">Select the Session Mode</label>
-            <div class="session-modes">
-              <button 
-                type="button" 
-                class="session-mode-btn" 
-                [class.active]="bookingForm.get('sessionMode')?.value === 'online'"
-                (click)="setSessionMode('online')"
-              >
-                Online
-              </button>
-              <button 
-                type="button" 
-                class="session-mode-btn" 
-                [class.active]="bookingForm.get('sessionMode')?.value === 'login'"
-                (click)="setSessionMode('login')"
-              >
-                Login
-              </button>
-            </div>
+    <h1 class="se-headline">
+      <span class="hl-white">Unlock Your</span>
+      <span class="hl-gradient">Learning Potential</span>
+    </h1>
+
+    <p class="se-desc">
+      India's most advanced EdTech platform for school
+      excellence and competitive exam preparation.
+      AI-powered, mentor-guided, result-driven.
+    </p>
+
+    <div class="se-actions">
+      <button class="btn-start" type="button" (click)="scheduleClass()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Start Learning Free
+      </button>
+
+      <button class="btn-demo" type="button" (click)="navigate('/exploring')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <polygon points="5,3 19,12 5,21" fill="white"/>
+        </svg>
+        Watch Demo
+      </button>
+    </div>
+
+    
+
+  </div>
+
+  <!-- RIGHT: Form card -->
+  <div class="se-right">
+    <div class="se-card">
+
+      <!-- Gradient top bar -->
+      <div class="card-topbar"></div>
+
+      <div class="card-body">
+
+        <!-- Logo row -->
+        <div class="logo-row">
+          <div class="qaroo-logo">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+              <polygon points="16,3 28,11 28,25 16,29 4,25 4,11"
+                       stroke="#FFD700" stroke-width="2.2" fill="none"/>
+              <polygon points="16,8 24,14 24,22 16,26 8,22 8,14"
+                       stroke="white" stroke-width="1.4" fill="none"/>
+              <text x="11" y="22" font-size="11" font-weight="900"
+                    fill="#FFD700" font-family="Arial, sans-serif">Q</text>
+            </svg>
           </div>
-          
-          <!-- Online Form Fields -->
-          <div *ngIf="bookingForm.get('sessionMode')?.value === 'online'">
-            <div class="form-group">
-              <label for="studentName">Name of your Child</label>
-              <input 
-                type="text" 
-                id="studentName" 
-                name="studentName" 
-                class="form-input"
-                placeholder="Enter your child's name"
-                formControlName="studentName"
-              />
-              <div class="error-message" *ngIf="bookingForm.get('studentName')?.invalid && bookingForm.get('studentName')?.touched">
-                {{ getErrorMessage('studentName') }}
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label for="mobileNumber">Mobile Number</label>
-              <div class="mobile-input-group">
-                <input 
-                  type="tel" 
-                  id="mobileNumber" 
-                  name="mobileNumber" 
-                  class="form-input mobile-input"
-                  placeholder="Enter mobile number"
-                  formControlName="mobileNumber"
-                />
-              </div>
-              <div class="error-message" *ngIf="bookingForm.get('mobileNumber')?.invalid && bookingForm.get('mobileNumber')?.touched">
-                {{ getErrorMessage('mobileNumber') }}
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                class="form-input"
-                placeholder="Enter email address"
-                formControlName="email"
-              />
-              <div class="error-message" *ngIf="bookingForm.get('email')?.invalid && bookingForm.get('email')?.touched">
-                {{ getErrorMessage('email') }}
-              </div>
-            </div>
+          <div class="logo-info">
+            <span class="logo-name">QAROO</span>
+            <span class="logo-sub">Learning Platform</span>
+          </div>
+        </div>
+
+        <!-- Session mode label -->
+        <p class="mode-label">SELECT THE SESSION MODE</p>
+
+        <!-- Toggle -->
+        <div class="mode-toggle">
+          <button class="mode-btn"
+                  [class.mode-active]="activeMode === 'online'"
+                  type="button"
+                  (click)="setMode('online')">
+            Online
+          </button>
+          <button class="mode-btn"
+                  [class.mode-active]="activeMode === 'login'"
+                  type="button"
+                  (click)="setMode('login')">
+            Login
+          </button>
+        </div>
+
+        <!-- ONLINE FORM -->
+        <form *ngIf="activeMode === 'online'"
+              [formGroup]="onlineForm"
+              (ngSubmit)="scheduleClass()"
+              novalidate>
+
+          <div class="success-banner" *ngIf="onlineSuccess">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#6ee7b7" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Class scheduled! We'll contact you shortly.
           </div>
 
-          <!-- Login Form Fields -->
-          <div *ngIf="bookingForm.get('sessionMode')?.value === 'login'">
-            <div class="form-group">
-              <label for="username">Email Address</label>
-              <input 
-                type="text" 
-                id="username" 
-                name="username" 
-                class="form-input"
-                placeholder="Enter email address"
-                formControlName="username"
-              />
-              <div class="error-message" *ngIf="bookingForm.get('username')?.invalid && bookingForm.get('username')?.touched">
-                {{ getErrorMessage('username') }}
-              </div>
+          <ng-container *ngIf="!onlineSuccess">
+
+            <div class="form-field">
+              <label class="f-label">NAME OF YOUR CHILD</label>
+              <input type="text" class="f-input"
+                     [class.f-error]="isFieldInvalid(onlineForm, 'childName')"
+                     placeholder="Enter your child's name"
+                     formControlName="childName" autocomplete="off"/>
+              <span class="f-err-msg" *ngIf="isFieldInvalid(onlineForm, 'childName')">
+                {{ getError(onlineForm, 'childName') }}
+              </span>
             </div>
-            
-            <div class="form-group">
-              <label for="password">Password</label>
-              <div class="password-container">
-                <input 
-                  type="password" 
-                  id="password" 
-                  name="password" 
-                  class="form-input"
-                  placeholder="Enter your password"
-                  formControlName="password"
-                />
-                <a href="#" class="forgot-password-link" (click)="forgotPassword($event)">Forgot Password?</a>
-              </div>
-              <div class="error-message" *ngIf="bookingForm.get('password')?.invalid && bookingForm.get('password')?.touched">
-                {{ getErrorMessage('password') }}
-              </div>
+
+            <div class="form-field">
+              <label class="f-label">MOBILE NUMBER</label>
+              <input type="tel" class="f-input"
+                     [class.f-error]="isFieldInvalid(onlineForm, 'mobile')"
+                     placeholder="Enter mobile number"
+                     formControlName="mobile" maxlength="10" autocomplete="off"/>
+              <span class="f-err-msg" *ngIf="isFieldInvalid(onlineForm, 'mobile')">
+                {{ getError(onlineForm, 'mobile') }}
+              </span>
             </div>
-          </div>
-          <button type="submit" class="submit-btn">
-            <span *ngIf="bookingForm.get('sessionMode')?.value === 'online'">Schedule a Class</span>
-            <span *ngIf="bookingForm.get('sessionMode')?.value === 'login'">Login</span>
-            <span *ngIf="!bookingForm.get('sessionMode')?.value">Book Free Session</span>
-          </button>
+
+            <div class="form-field">
+              <label class="f-label">EMAIL ADDRESS</label>
+              <input type="email" class="f-input"
+                     [class.f-error]="isFieldInvalid(onlineForm, 'email')"
+                     placeholder="Enter email address"
+                     formControlName="email" autocomplete="off"/>
+              <span class="f-err-msg" *ngIf="isFieldInvalid(onlineForm, 'email')">
+                {{ getError(onlineForm, 'email') }}
+              </span>
+            </div>
+
+            <div class="form-error" *ngIf="onlineError">{{ onlineError }}</div>
+
+            <button type="submit" class="submit-btn" [disabled]="onlineLoading">
+              <svg *ngIf="onlineLoading" class="spin" width="16" height="16"
+                   viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9" stroke="rgba(255,255,255,0.25)" stroke-width="2.5"/>
+                <path d="M12 3a9 9 0 019 9" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+              <span>{{ onlineLoading ? 'Scheduling...' : 'SCHEDULE A CLASS' }}</span>
+            </button>
+
+          </ng-container>
         </form>
-        
-        <div class="form-footer">
-          <p class="privacy-note">
-            <span class="icon">🔒</span>
+
+        <!-- LOGIN FORM -->
+        <form *ngIf="activeMode === 'login'"
+              [formGroup]="loginForm"
+              (ngSubmit)="login()"
+              novalidate>
+
+          <div class="form-field">
+            <label class="f-label">EMAIL ADDRESS OR MOBILE NUMBER</label>
+            <input type="text" class="f-input"
+                   [class.f-error]="isFieldInvalid(loginForm, 'identifier')"
+                   placeholder="Enter email address"
+                   formControlName="identifier" autocomplete="off"/>
+            <span class="f-err-msg" *ngIf="isFieldInvalid(loginForm, 'identifier')">
+              {{ getError(loginForm, 'identifier') }}
+            </span>
+          </div>
+
+          <div class="form-field">
+            <label class="f-label">PASSWORD</label>
+            <div class="pwd-row">
+              <input [type]="showPassword ? 'text' : 'password'" class="f-input"
+                     [class.f-error]="isFieldInvalid(loginForm, 'password')"
+                     placeholder="Enter your password"
+                     formControlName="password"/>
+              <button type="button" class="eye-btn" (click)="togglePassword()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                        stroke="#6b7280" stroke-width="1.8"/>
+                  <circle cx="12" cy="12" r="3" stroke="#6b7280" stroke-width="1.8"/>
+                </svg>
+              </button>
+            </div>
+            <span class="f-err-msg" *ngIf="isFieldInvalid(loginForm, 'password')">
+              {{ getError(loginForm, 'password') }}
+            </span>
+          </div>
+
+          <div class="forgot-row">
+            <button type="button" class="forgot-link" (click)="forgotPassword()">
+              Forgot Password?
+            </button>
+          </div>
+
+          <div class="form-error" *ngIf="loginError">{{ loginError }}</div>
+
+          <button type="submit" class="submit-btn" [disabled]="loginLoading">
+            <svg *ngIf="loginLoading" class="spin" width="16" height="16"
+                 viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="rgba(255,255,255,0.25)" stroke-width="2.5"/>
+              <path d="M12 3a9 9 0 019 9" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            <span>{{ loginLoading ? 'Logging in...' : 'LOGIN' }}</span>
+          </button>
+
+          <div class="secure-note">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+              <rect x="5" y="11" width="14" height="10" rx="2"
+                    stroke="#4b5563" stroke-width="1.6"/>
+              <path d="M8 11V7a4 4 0 018 0v4"
+                    stroke="#4b5563" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
             Your information is secure and will never be shared
-          </p>
-        </div>
+          </div>
+        </form>
+
       </div>
     </div>
   </div>
+
 </div>

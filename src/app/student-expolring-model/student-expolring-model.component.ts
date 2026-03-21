@@ -7,12 +7,29 @@ export interface Advantage {
   image: string;
 }
 
-export interface ExploreItem {
+export interface LearningCard {
   id: number;
-  title: string;
-  description: string;
   image: string;
-  buttonText: string;
+  title: string;
+  courseNum: string;
+  duration: string;
+  badge: string;
+}
+
+export interface LearningProgram {
+  id: number;
+  category: string;
+  logo: string;
+  logoAlt: string;
+  programTitle: string;
+  description: string;
+  rating: number;
+  ratingCount: string;
+  totalHours: string;
+  totalCourses: string;
+  ctaLabel: string;
+  containerBg: string;
+  cards: LearningCard[];
 }
 
 @Component({
@@ -21,7 +38,7 @@ export interface ExploreItem {
   styleUrls: ['./student-expolring-model.component.css']
 })
 export class StudentExpolringModelComponent implements OnInit, OnDestroy {
-  
+
   // Advantages using advantages1,2,3 images
   advantages: Advantage[] = [
     {
@@ -44,140 +61,173 @@ export class StudentExpolringModelComponent implements OnInit, OnDestroy {
     }
   ];
 
-  // Exploring section using other asset images
-  exploreItems: ExploreItem[] = [
+  // Learning programs (Coursera-style)
+  programs: LearningProgram[] = [
     {
       id: 1,
-      title: 'Interactive Learning',
-      description: 'Engage with interactive lessons and hands-on activities for better understanding and retention of concepts.',
-      image: '../../assets/class 4-10.png',
-      buttonText: 'Start Learning'
+      category: 'School Program',
+      logo: 'assets/img/qaroo-logo.png',
+      logoAlt: 'Qaroo',
+      programTitle: 'Qaroo School Excellence Program',
+      description:
+        'Master your school curriculum with expert tutors, ' +
+        'interactive lessons and AI-powered progress tracking.',
+      rating: 4.8,
+      ratingCount: '1.2K ratings',
+      totalHours: '120 hours',
+      totalCourses: '12 courses',
+      ctaLabel: 'Explore Program',
+      containerBg: '#0a5c5c',
+      cards: [
+        {
+          id: 1,
+          image: '../../assets/class 4-10.png',
+          title: 'Mathematics Fundamentals',
+          courseNum: 'Course 1 of 12',
+          duration: '8.5 hours',
+          badge: 'Most Popular'
+        },
+        {
+          id: 2,
+          image: '../../assets/jee.png',
+          title: 'Science & Technology',
+          courseNum: 'Course 2 of 12',
+          duration: '6.2 hours',
+          badge: ''
+        },
+        {
+          id: 3,
+          image: '../../assets/neet.png',
+          title: 'English Language Mastery',
+          courseNum: 'Course 3 of 12',
+          duration: '4.8 hours',
+          badge: ''
+        },
+        {
+          id: 4,
+          image: '../../assets/IAS.png',
+          title: 'Social Studies & History',
+          courseNum: 'Course 4 of 12',
+          duration: '5.1 hours',
+          badge: 'New'
+        },
+        {
+          id: 5,
+          image: '../../assets/classs 4 - 10.png',
+          title: 'Computer Science Basics',
+          courseNum: 'Course 5 of 12',
+          duration: '7.0 hours',
+          badge: ''
+        }
+      ]
     },
     {
       id: 2,
-      title: 'Virtual Labs',
-      description: 'Experience science experiments and practical learning in virtual environments with advanced simulation tools.',
-      image: '../../assets/jee.png',
-      buttonText: 'Explore Labs'
-    },
-    {
-      id: 3,
-      title: 'Study Groups',
-      description: 'Collaborate with peers and learn together in virtual study groups facilitated by expert moderators.',
-      image: '../../assets/neet.png',
-      buttonText: 'Join Groups'
-    },
-    {
-      id: 4,
-      title: 'Progress Tracking',
-      description: 'Monitor your learning progress with detailed analytics and insights to optimize your study plan.',
-      image: '../../assets/LKG - 3.webp',
-      buttonText: 'Track Progress'
-    },
-    {
-      id: 5,
-      title: 'Expert Mentors',
-      description: 'Connect with experienced mentors for personalized guidance and support throughout your learning journey.',
-      image: '../../assets/IAS.png',
-      buttonText: 'Find Mentors'
-    },
-    {
-      id: 6,
-      title: 'Resource Library',
-      description: 'Access comprehensive study materials, notes, and reference resources to enhance your learning experience.',
-      image: '../../assets/classs 4 - 10.png',
-      buttonText: 'Browse Resources'
+      category: 'Competitive Exams',
+      logo: 'assets/img/qaroo-logo.png',
+      logoAlt: 'Qaroo',
+      programTitle: 'Qaroo Competitive Exam Prep',
+      description:
+        'Crack JEE, NEET, UPSC and more with structured ' +
+        'study plans, mock tests and expert mentorship.',
+      rating: 4.9,
+      ratingCount: '2.4K ratings',
+      totalHours: '200 hours',
+      totalCourses: '18 courses',
+      ctaLabel: 'Explore Program',
+      containerBg: '#1a3a5c',
+      cards: [
+        {
+          id: 1,
+          image: '../../assets/jee.png',
+          title: 'JEE Physics — Mechanics',
+          courseNum: 'Course 1 of 18',
+          duration: '12 hours',
+          badge: 'Top Rated'
+        },
+        {
+          id: 2,
+          image: '../../assets/neet.png',
+          title: 'JEE Chemistry — Organic',
+          courseNum: 'Course 2 of 18',
+          duration: '9.5 hours',
+          badge: ''
+        },
+        {
+          id: 3,
+          image: '../../assets/class 4-10.png',
+          title: 'JEE Mathematics — Calculus',
+          courseNum: 'Course 3 of 18',
+          duration: '11 hours',
+          badge: ''
+        },
+        {
+          id: 4,
+          image: '../../assets/IAS.png',
+          title: 'NEET Biology — Botany',
+          courseNum: 'Course 4 of 18',
+          duration: '8 hours',
+          badge: 'New'
+        },
+        {
+          id: 5,
+          image: '../../assets/LKG - 3.webp',
+          title: 'Full Mock Test Series',
+          courseNum: 'Course 5 of 18',
+          duration: '15 hours',
+          badge: ''
+        }
+      ]
     }
   ];
 
-  // Scroll functionality
-  currentExploreIndex: number = 0;
-  @ViewChild('scrollableCards') scrollableCards!: ElementRef;
+  activeProgram = 0;
+  canScrollLeft = false;
+  canScrollRight = true;
 
-  // Handle explore item clicks
-  onExploreClick(itemId: number): void {
-    const item = this.exploreItems.find(i => i.id === itemId);
-    if (item) {
-      console.log(`Clicked: ${item.title}`);
-      // Add navigation logic here
+  @ViewChild('cardTrack') cardTrack!: ElementRef<HTMLElement>;
+
+  get current(): LearningProgram {
+    return this.programs[this.activeProgram];
+  }
+
+  ngOnInit(): void {}
+  ngOnDestroy(): void {}
+
+  selectProgram(index: number): void {
+    this.activeProgram = index;
+    this.resetScroll();
+  }
+
+  scrollCards(dir: 'left' | 'right'): void {
+    const track = this.cardTrack?.nativeElement;
+    if (!track) return;
+    const amount = 280;
+    track.scrollBy({
+      left: dir === 'right' ? amount : -amount,
+      behavior: 'smooth'
+    });
+    setTimeout(() => this.updateScrollState(), 350);
+  }
+
+  getStars(rating: number): number[] {
+    return Array(Math.floor(rating)).fill(0);
+  }
+
+  private resetScroll(): void {
+    const track = this.cardTrack?.nativeElement;
+    if (track) {
+      track.scrollTo({ left: 0, behavior: 'instant' });
     }
+    this.canScrollLeft = false;
+    this.canScrollRight = true;
   }
 
-  // Scroll methods
-  scrollLeft(): void {
-    const container = document.querySelector('.scrollable-cards') as HTMLElement;
-    if (container) {
-      container.scrollBy({ left: -320, behavior: 'smooth' });
-      this.updateCurrentIndex();
-    }
+  private updateScrollState(): void {
+    const track = this.cardTrack?.nativeElement;
+    if (!track) return;
+    this.canScrollLeft = track.scrollLeft > 0;
+    this.canScrollRight =
+      track.scrollLeft + track.clientWidth < track.scrollWidth - 4;
   }
-
-  scrollRight(): void {
-    const container = document.querySelector('.scrollable-cards') as HTMLElement;
-    if (container) {
-      container.scrollBy({ left: 320, behavior: 'smooth' });
-      this.updateCurrentIndex();
-    }
-  }
-
-  scrollToCard(index: number): void {
-    const container = document.querySelector('.scrollable-cards') as HTMLElement;
-    const cards = document.querySelectorAll('.explore-card');
-    if (container && cards[index]) {
-      const card = cards[index] as HTMLElement;
-      const scrollLeft = card.offsetLeft - (container.offsetWidth - card.offsetWidth) / 2;
-      container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-      this.currentExploreIndex = index;
-    }
-  }
-
-  updateCurrentIndex(): void {
-    const container = document.querySelector('.scrollable-cards') as HTMLElement;
-    const cards = document.querySelectorAll('.explore-card');
-    if (container && cards.length > 0) {
-      const containerCenter = container.scrollLeft + container.offsetWidth / 2;
-      let closestIndex = 0;
-      let closestDistance = Infinity;
-
-      cards.forEach((card, index) => {
-        const cardElement = card as HTMLElement;
-        const cardCenter = cardElement.offsetLeft + cardElement.offsetWidth / 2;
-        const distance = Math.abs(containerCenter - cardCenter);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = index;
-        }
-      });
-
-      this.currentExploreIndex = closestIndex;
-    }
-  }
-
-  // Auto-scroll functionality
-  autoScrollInterval: any;
-
-  startAutoScroll(): void {
-    this.autoScrollInterval = setInterval(() => {
-      if (this.currentExploreIndex < this.exploreItems.length - 1) {
-        this.scrollRight();
-      } else {
-        this.scrollToCard(0);
-      }
-    }, 4000);
-  }
-
-  stopAutoScroll(): void {
-    if (this.autoScrollInterval) {
-      clearInterval(this.autoScrollInterval);
-    }
-  }
-
-  ngOnInit(): void {
-    this.startAutoScroll();
-  }
-
-  ngOnDestroy(): void {
-    this.stopAutoScroll();
-  }
-
 }

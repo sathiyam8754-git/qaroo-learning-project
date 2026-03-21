@@ -4,7 +4,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(26, 16, 51, 0.5);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,8 +24,8 @@
 
 .demo-dialog-container {
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 32px 80px rgba(26, 16, 51, 0.25);
   width: 90%;
   max-width: 1200px;
   max-height: 90vh;
@@ -48,9 +49,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 24px 32px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #5B4FE8 0%, #7C74F0 100%);
   color: white;
-  border-radius: 12px 12px 0 0;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
 .header-left {
@@ -197,7 +198,7 @@
   align-items: center;
   gap: 8px;
   padding: 12px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #5B4FE8 0%, #7C74F0 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -345,7 +346,7 @@
 
 .form-input:focus, .form-textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #5B4FE8;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -380,7 +381,7 @@
   content: '';
   width: 4px;
   height: 16px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #5B4FE8 0%, #7C74F0 100%);
   border-radius: 2px;
 }
 
@@ -402,13 +403,13 @@
 }
 
 .duration-item:hover {
-  border-color: #667eea;
+  border-color: #5B4FE8;
   background-color: #f8f9ff;
 }
 
 .duration-item.selected {
-  border-color: #667eea;
-  background-color: #667eea;
+  border-color: #5B4FE8;
+  background-color: #5B4FE8;
   color: white;
 }
 
@@ -467,13 +468,13 @@
 }
 
 .day-type-item:hover {
-  border-color: #667eea;
+  border-color: #5B4FE8;
   background-color: #f8f9ff;
 }
 
 .day-type-item.selected {
-  border-color: #667eea;
-  background-color: #667eea;
+  border-color: #5B4FE8;
+  background-color: #5B4FE8;
   color: white;
 }
 
@@ -525,7 +526,7 @@
 
 .selected-duration {
   font-weight: 600;
-  color: #667eea;
+  color: #5B4FE8;
 }
 
 .date-range {
@@ -538,7 +539,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #5B4FE8 0%, #7C74F0 100%);
   color: white;
   border-radius: 8px;
   margin-bottom: 16px;
@@ -567,13 +568,13 @@
 }
 
 .slot-item:hover {
-  border-color: #667eea;
+  border-color: #5B4FE8;
   background-color: #f8f9ff;
 }
 
 .slot-item.selected {
-  border-color: #667eea;
-  background-color: #667eea;
+  border-color: #5B4FE8;
+  background-color: #5B4FE8;
   color: white;
 }
 
@@ -591,7 +592,7 @@
 .submit-btn {
   width: 100%;
   padding: 14px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #5B4FE8 0%, #7C74F0 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -624,7 +625,7 @@
 }
 
 .course-overview {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #5B4FE8 0%, #7C74F0 100%);
   color: white;
   padding: 32px;
   border-radius: 12px;
@@ -705,14 +706,14 @@
 }
 
 .pricing-card:hover {
-  border-color: #667eea;
+  border-color: #5B4FE8;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
 }
 
 .pricing-card.premium {
-  border-color: #667eea;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #5B4FE8;
+  background: linear-gradient(135deg, #5B4FE8 0%, #7C74F0 100%);
   color: white;
 }
 
@@ -823,7 +824,7 @@
 
 .premium-btn {
   background: white;
-  color: #667eea;
+  color: #5B4FE8;
 }
 
 .premium-btn:hover {
@@ -934,19 +935,19 @@
 }
 
 .fee-card:hover {
-  border-color: #667eea;
+  border-color: #5B4FE8;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
 }
 
 .fee-card.premium {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #5B4FE8 0%, #7C74F0 100%);
   color: white;
   position: relative;
 }
 
 .fee-card.premium:hover {
-  border-color: #764ba2;
+  border-color: #7C74F0;
   box-shadow: 0 12px 35px rgba(118, 75, 162, 0.25);
 }
 
@@ -1019,7 +1020,7 @@
   width: 100%;
   padding: 14px 24px;
   background: white;
-  color: #667eea;
+  color: #5B4FE8;
   border: none;
   border-radius: 8px;
   font-size: 16px;
@@ -1156,7 +1157,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #667eea;
+  background: #5B4FE8;
   color: white;
   border-radius: 50%;
   font-size: 12px;

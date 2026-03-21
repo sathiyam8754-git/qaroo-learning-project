@@ -1,42 +1,203 @@
-<div class="page-container">
-  <!-- Header Section -->
-  <header class="page-header">
-    <h1>Student Programs</h1>
-    <p>Choose your learning path and start your educational journey</p>
-  </header>
+<section class="programs-page">
 
-  <!-- Programs Grid -->
-  <main class="programs-section">
-    <div class="cards-grid">
-      <!-- Dynamic cards using ngFor -->
-      <article class="program-card" *ngFor="let card of programCards">
-        <div class="card-image-container">
-          <img [src]="card.image" [alt]="card.title" class="card-image">
-        </div>
-        <div class="card-content">
-          <h3 class="card-title">{{ card.title }}</h3>
-          <p class="card-description">{{ card.description }}</p>
-          <button class="card-button" (click)="onCardClick(card.id)">
-            {{ card.buttonText }}
-          </button>
-        </div>
-      </article>
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="header-text">
+      <div class="header-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Qaroo Learning Platform
+      </div>
+      <h1 class="page-title">Student Programs</h1>
+      <p class="page-sub">
+        Choose from expertly crafted programs for school
+        excellence and competitive exam success
+      </p>
     </div>
-  </main>
-</div>
 
-<!-- Student Details Dialog -->
-<app-student-details-dialog 
-  [show]="showStudentDialog" 
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-num">50,000+</span>
+        <span class="stat-lbl">Active Students</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat-item">
+        <span class="stat-num">120+</span>
+        <span class="stat-lbl">Expert Mentors</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat-item">
+        <span class="stat-num">4.8</span>
+        <span class="stat-lbl">Avg. Rating</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTER + SEARCH -->
+  <div class="filter-bar">
+    <div class="filter-tabs">
+      <button
+        *ngFor="let f of filters"
+        class="filter-tab"
+        [class.filter-active]="activeFilter === f.key"
+        (click)="setFilter(f.key)">
+        {{ f.label }}
+      </button>
+    </div>
+
+    <div class="search-wrap">
+      <svg class="search-ico" width="16" height="16"
+           viewBox="0 0 24 24" fill="none">
+        <circle cx="11" cy="11" r="7"
+                stroke="#9ca3af" stroke-width="2"/>
+        <path d="M16.5 16.5L21 21"
+              stroke="#9ca3af" stroke-width="2"
+              stroke-linecap="round"/>
+      </svg>
+      <input type="text"
+             class="search-input"
+             placeholder="Search programs or topics..."
+             [(ngModel)]="searchQuery" />
+    </div>
+  </div>
+
+  <!-- RESULTS COUNT -->
+  <div class="results-row">
+    <span class="results-count">
+      {{ filteredPrograms.length }} program(s) found
+    </span>
+  </div>
+
+  <!-- PROGRAM CARDS GRID -->
+  <div class="programs-grid"
+       *ngIf="filteredPrograms.length > 0; else noResults">
+
+    <div class="program-card"
+         *ngFor="let p of filteredPrograms"
+         [class.card-featured]="p.featured">
+
+      <!-- Featured ribbon -->
+      <div class="featured-ribbon" *ngIf="p.featured">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25 1.18-6.88-5-4.87 6.91-1.01L12 2z"
+                fill="#F59E0B"/>
+        </svg>
+        Featured
+      </div>
+
+      <!-- Card header -->
+      <div class="card-header">
+        <div class="card-icon-wrap">
+          <span class="card-icon">{{ p.icon }}</span>
+        </div>
+        <div class="card-header-right">
+          <span class="card-badge"
+                *ngIf="p.badge"
+                [style.background]="p.badgeColor + '1a'"
+                [style.color]="p.badgeColor"
+                [style.borderColor]="p.badgeColor + '40'">
+            {{ p.badge }}
+          </span>
+          <span class="card-category">
+            {{ p.category === 'school' ? 'School Program' : 'Competitive Exam' }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Card body -->
+      <div class="card-body">
+        <h3 class="card-title">{{ p.title }}</h3>
+        <p class="card-subtitle">{{ p.subtitle }}</p>
+        <p class="card-desc">{{ p.description }}</p>
+
+        <div class="card-tags">
+          <span class="tag" *ngFor="let tag of p.tags">{{ tag }}</span>
+        </div>
+      </div>
+
+      <!-- Card meta -->
+      <div class="card-meta">
+        <div class="meta-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="#6b7280" stroke-width="1.8"/>
+            <path d="M12 7v5l3 3" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span>{{ p.duration }}</span>
+        </div>
+        <div class="meta-dot"></div>
+        <div class="meta-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="9" cy="7" r="4" stroke="#6b7280" stroke-width="1.8"/>
+          </svg>
+          <span>{{ p.students }}</span>
+        </div>
+        <div class="meta-dot"></div>
+        <div class="meta-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5" stroke="#6b7280" stroke-width="1.8"/>
+          </svg>
+          <span>{{ p.level }}</span>
+        </div>
+      </div>
+
+      <!-- Rating + CTA -->
+      <div class="card-footer">
+        <div class="rating-wrap">
+          <div class="stars">
+            <svg *ngFor="let s of getStars(p.rating)"
+                 width="13" height="13" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1l1.5 3 3.3.5-2.4 2.3.6 3.2L7 8.5l-3 1.5.6-3.2L2.2 4.5l3.3-.5z"
+                    fill="#F59E0B"/>
+            </svg>
+          </div>
+          <span class="rating-val">{{ p.rating }}</span>
+          <span class="rating-cnt">{{ p.ratingCount }}</span>
+        </div>
+        <button class="enroll-btn"
+                [class.enroll-featured]="p.featured"
+                type="button"
+                (click)="onEnroll(p.id)">
+          {{ p.ctaLabel }}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12h14M12 5l7 7-7 7"
+                  stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <ng-template #noResults>
+    <div class="empty-state">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+        <circle cx="11" cy="11" r="7" stroke="#d1d5db" stroke-width="1.5"/>
+        <path d="M16.5 16.5L21 21" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <p>No programs match your search.</p>
+      <button (click)="searchQuery=''; activeFilter='all'" class="reset-search-btn">
+        Clear filters
+      </button>
+    </div>
+  </ng-template>
+
+</section>
+
+<!-- Student Details Dialog (preserved) -->
+<app-student-details-dialog
+  [show]="showStudentDialog"
   [data]="dialogData"
   (close)="onDialogClose()"
   (submit)="onDialogSubmit($event)"
   (openDemoClass)="onOpenDemoClass($event)">
 </app-student-details-dialog>
 
-<!-- Demo Class Dialog -->
-<app-demo-class-dialog 
-  [show]="showDemoClassDialog" 
+<!-- Demo Class Dialog (preserved) -->
+<app-demo-class-dialog
+  [show]="showDemoClassDialog"
   [data]="demoClassData"
   (close)="onDemoClassDialogClose()"
   (submit)="onDemoClassDialogSubmit($event)">

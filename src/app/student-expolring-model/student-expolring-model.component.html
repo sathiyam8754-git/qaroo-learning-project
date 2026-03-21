@@ -1,55 +1,141 @@
 <div class="explore-container">
-  <!-- First Section: Advantages -->
+
+  <!-- ═══ EXPLORE LEARNING — Coursera Style ═══ -->
+  <section class="explore-sec">
+
+    <!-- Section heading -->
+    <div class="sec-head">
+      <h2 class="sec-title">Explore Learning</h2>
+      <p class="sec-sub">Discover programs tailored to your goals</p>
+    </div>
+
+    <!-- Program tabs -->
+    <div class="prog-tabs">
+      <button
+        *ngFor="let p of programs; let i = index"
+        class="prog-tab"
+        [class.prog-tab--active]="activeProgram === i"
+        (click)="selectProgram(i)">
+        {{ p.category }}
+      </button>
+    </div>
+
+    <!-- Main container card -->
+    <div class="container-card" [style.background]="current.containerBg">
+      <div class="container-inner">
+
+        <!-- LEFT: Pinned program info card -->
+        <div class="left-card">
+
+          <div class="prog-logo-wrap">
+            <img [src]="current.logo"
+                 [alt]="current.logoAlt"
+                 class="prog-logo"
+                 onerror="this.style.display='none'" />
+            <span class="prog-logo-text">{{ current.logoAlt }}</span>
+          </div>
+
+          <h3 class="prog-title">{{ current.programTitle }}</h3>
+          <p class="prog-desc">{{ current.description }}</p>
+
+          <!-- Rating row -->
+          <div class="rating-row">
+            <div class="stars">
+              <svg *ngFor="let s of getStars(current.rating)"
+                   width="14" height="14"
+                   viewBox="0 0 14 14" fill="none">
+                <path d="M7 1l1.5 3 3.3.5-2.4 2.3.6 3.2L7 8.5l-3 1.5.6-3.2L2.2 4.5l3.3-.5z"
+                      fill="#F59E0B"/>
+              </svg>
+            </div>
+            <span class="rating-num">{{ current.rating }}</span>
+            <span class="rating-sep">|</span>
+            <span class="rating-lbl">{{ current.ratingCount }}</span>
+            <span class="rating-sep">|</span>
+            <span class="rating-lbl">{{ current.totalHours }}</span>
+            <span class="rating-sep">|</span>
+            <span class="rating-lbl">{{ current.totalCourses }}</span>
+          </div>
+
+          <button class="cta-btn" type="button">
+            {{ current.ctaLabel }}
+          </button>
+        </div>
+
+        <!-- RIGHT: Scrollable course cards -->
+        <div class="right-section">
+
+          <!-- Left nav arrow -->
+          <button class="nav-btn nav-btn--left"
+                  type="button"
+                  [disabled]="!canScrollLeft"
+                  (click)="scrollCards('left')">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M11.25 13.5L6.75 9L11.25 4.5"
+                    stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <!-- Card track -->
+          <div class="card-track" #cardTrack>
+            <div class="course-card" *ngFor="let card of current.cards">
+
+              <!-- Thumbnail -->
+              <div class="card-thumb">
+                <img [src]="card.image"
+                     [alt]="card.title"
+                     class="thumb-img"
+                     onerror="this.parentElement.classList.add('thumb-placeholder')" />
+                <span class="thumb-badge" *ngIf="card.badge">
+                  {{ card.badge }}
+                </span>
+              </div>
+
+              <!-- Card body -->
+              <div class="card-body">
+                <h4 class="card-title">{{ card.title }}</h4>
+                <div class="card-meta">
+                  <span class="meta-pill">{{ card.courseNum }}</span>
+                  <span class="meta-sep">·</span>
+                  <span class="meta-pill">{{ card.duration }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right nav arrow -->
+          <button class="nav-btn nav-btn--right"
+                  type="button"
+                  [disabled]="!canScrollRight"
+                  (click)="scrollCards('right')">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M6.75 4.5L11.25 9L6.75 13.5"
+                    stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══ ADVANTAGES SECTION (unchanged) ═══ -->
   <section class="advantages-section">
     <h2 class="section-title advantages-title">Our Advantages</h2>
     <div class="advantages-grid">
-      <!-- Advantages using advantages1,2,3 images -->
       <div class="advantage-item" *ngFor="let advantage of advantages">
         <div class="advantage-image">
           <img [src]="advantage.image" [alt]="advantage.title">
         </div>
         <div class="advantage-content">
-          <h3>{{ advantage.title }}</h3>
+          <h3 >{{ advantage.title }}</h3>
           <p>{{ advantage.description }}</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Second Section: Exploring - Exact Card Design -->
-  <section class="exploring-section">
-    <h2 class="section-title exploring-title">Explore Learning</h2>
-    
-    <!-- Scrollable Container with Exact Design -->
-    <div class="scrollable-container">
-      <!-- Navigation Arrows -->
-      <div class="nav-arrow nav-left" (click)="scrollLeft()">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="nav-arrow nav-right" (click)="scrollRight()">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      
-      <!-- Scrollable Cards -->
-      <div class="scrollable-cards" #scrollableCards>
-        <!-- Exploring items using other asset images -->
-        <div class="explore-card" *ngFor="let item of exploreItems">
-          <div class="explore-card-image">
-            <img [src]="item.image" [alt]="item.title">
-          </div>
-          <div class="explore-card-content">
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.description }}</p>
-            <button class="explore-card-button" (click)="onExploreClick(item.id)">
-              {{ item.buttonText }}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>

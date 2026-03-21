@@ -1,47 +1,57 @@
-<div class="about-us-container">
-  <div class="section">
-    <h2>About Us</h2>
-    <p>TestCompany is India's largest ed-tech company and the creator of India's most loved school learning app. Launched in 2015, TestCompany offers highly personalised and effective learning programs for classes 1 - 12 (K-12), and aspirants of competitive exams like JEE, IAS etc. With 50 million registered students and 3.5 million paid subscriptions, TestCompany has become one of the most preferred education platforms across the globe.</p>
-  </div>
+<div class="about-page">
 
-  <div class="section">
-    <h2>What Makes Us Different?</h2>
-    <h3>Personalised Learning</h3>
-    <p>Our niche is creating personalised learning experiences for every type of learner. The TestCompany way of learning provides students a learning platform where they can learn, engage and be excited about charting their own path to discover the world. TestCompany - The Learning App brings together the best teachers, technology, content, media for creating a seamless, world class learning experience for each and every student.</p>
-  </div>
+  <!-- Hero banner -->
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-eyebrow">About Qaroo</span>
+      <h1 class="hero-title">India's Most Loved<br>Learning Platform</h1>
+      <p class="hero-sub">
+        Qaroo is India's largest ed-tech company and the creator of India's
+        most loved school learning app. Offering highly personalised and effective
+        learning programs for classes 1–12 and competitive exams like JEE, NEET,
+        IAS and more.
+      </p>
+    </div>
+    <div class="hero-gradient-orb"></div>
+  </section>
 
-  <div class="section">
-    <h2>Why Choose Us?</h2>
-    <p>Learning is pivotal for a student's success in academics and life. The Digital Age is deeply shaping the way students learn and will also determine their future prospects. At TestCompany, we encourage students to embrace this fast, changing world and making them ready for tomorrow by being their constant learning partner.</p>
-    <p>We craft learning journeys for every student that address their unique needs. We believe in the power of one-to-one learning that addresses every child's learning needs, allows students to be holistically involved in their education and be active, lifelong learners.</p>
-  </div>
+ 
+  <!-- Why choose us -->
+  <section class="why-section">
+    <span class="section-eyebrow section-eyebrow--light">Why Choose Us</span>
+    <h2 class="section-heading section-heading--light">
+      Shaping the Future<br>of Student Learning
+    </h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <p>
+          Learning is pivotal for a student's success in academics and life.
+          The Digital Age is deeply shaping the way students learn and will also
+          determine their future prospects. At Qaroo, we encourage students to
+          embrace this fast-changing world and prepare them for tomorrow.
+        </p>
+      </div>
+      <div class="why-card">
+        <p>
+          We craft learning journeys for every student that address their unique
+          needs. We believe in the power of one-to-one learning that allows students
+          to be holistically involved in their education and become active, lifelong learners.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <div class="section">
-    <h2>Our Three Pillars</h2>
-    <h3>Personalised Learning Journeys</h3>
-    <p>Personalised Learning- is the foundation of our unique programs for students. Using knowledge graphs, the program adapts and creates personalised learning journeys for students. It provides a comprehensive coverage of over 1 lakh concepts with animated videos and questions, fun quizzes and flashcards.</p>
-    <p>Based on the student's progress, personal learning profiles are created which help analyse strengths and areas of improvement. Each concept gets tagged at different levels of difficulty to create a smooth learning curve which keeps students motivated through any new learning challenge. Whenever errors are made, motivating remedial methods are generated to strengthen and improve the student's learning experience.</p>
-  </div>
+  <!-- Three pillars -->
+  <section class="pillars-section">
+    <span class="section-eyebrow">Our Three Pillars</span>
+    <h2 class="section-heading">Built on Strong Foundations</h2>
+    <div class="pillars-grid">
+      <div class="pillar-card" *ngFor="let pillar of pillars">
+        <span class="pillar-icon">{{ pillar.icon }}</span>
+        <h3 class="pillar-title">{{ pillar.title }}</h3>
+        <p class="pillar-desc">{{ pillar.description }}</p>
+      </div>
+    </div>
+  </section>
 
-  <div class="section">
-    <h2>Technology Enabled Learning</h2>
-    <p>At TestCompany, we leverage technology to merge best practices like use of videos, engaging content and quizzes with the best teachers so that every child across the globe has access to the best learning experiences.</p>
-    <p>Key features of the learning program:</p>
-    <ul>
-      <li>Interactive and engaging learning modules</li>
-      <li>Visually rich content to enable conceptual clarity and lifelong term retention</li>
-      <li>Personalised learning programs designed for every student, enabled by the power of data science</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Best Teachers & Engaging Content</h2>
-    <p>The TestCompany Learning Programs provide students a holistic learning experience. Students across regions can access the best teachers and see concepts come to life. Every detail of a student's journey is planned and executed at the deepest level with subject matter experts, teachers and tools like videos, interactive animations, quizzes and assessments.</p>
-    <p>The app integrates these well crafted lessons from our teachers and assessments along with analysis and recommendations, personalised to suit each student's learning style. This holistic approach has seen a student engagement of over 71 minutes a day, being spent by a student on the app,making it one of the most loved apps for students across age groups.</p>
-    <p>We at TestCompany work towards offering students the best learning experience. We have courses for students across ages and grades:</p>
-    <ul>
-      <li>Maths, Physics, Chemistry and Biology for CBSE and ISC (Classes 1-12)</li>
-      <li>Competitive Exams- JEE, NEET, IAS preparation courses</li>
-    </ul>
-  </div>
 </div>
