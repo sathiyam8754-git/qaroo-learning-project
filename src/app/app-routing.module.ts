@@ -21,6 +21,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'course-details',
+    loadChildren: () => import('./course-details/course-details.module').then(m => m.CourseDetailsModule)
+  },
+  {
     path: 'reset-password/:token',
     component: ResetPasswordComponent
   }
