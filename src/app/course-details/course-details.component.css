@@ -360,7 +360,7 @@
 
 .cd-section:last-child { border-bottom: none; margin-bottom: 0; }
 
-.cd-sec-title {
+.cd-sec-title { 
   font-family: 'DM Serif Display', serif;
   font-size: 22px;
   font-weight: 400;
