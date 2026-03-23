@@ -1,0 +1,294 @@
+<div class="cd-page">
+
+  <!-- STICKY HEADER NAV -->
+  <nav class="cd-topnav">
+    <div class="cd-topnav-inner">
+      <button class="back-btn" (click)="goBack()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        Back
+      </button>
+      <div class="topnav-tabs">
+        <button *ngFor="let tab of tabs" class="topnav-tab" [class.topnav-active]="activeTab === tab.key"
+          (click)="setTab(tab.key)">
+          {{ tab.label }}
+        </button>
+      </div>
+      <button class="enroll-top-btn" (click)="enroll()">Enroll Now — Free</button>
+    </div>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <div class="cd-hero">
+    <div class="cd-hero-inner">
+      <div class="cd-hero-left">
+        <div class="cd-breadcrumb">
+          <span (click)="goBack()" class="bc-link">Home</span>
+          <span class="bc-sep">›</span>
+          <span (click)="goBack()" class="bc-link">Explore Learning</span>
+          <span class="bc-sep">›</span>
+          <span class="bc-current">{{ program.title }}</span>
+        </div>
+        <div class="cd-tags">
+          <span class="cd-tag" *ngFor="let tag of program.tags">{{ tag }}</span>
+        </div>
+        <h1 class="cd-hero-title">{{ program.title }}</h1>
+        <p class="cd-hero-sub">{{ program.subtitle }}</p>
+        <div class="cd-rating-row">
+          <div class="cd-stars">
+            <svg *ngFor="let s of getStars(program.rating)" width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1l1.5 3 3.3.5-2.4 2.3.6 3.2L7 8.5l-3 1.5.6-3.2L2.2 4.5l3.3-.5z" fill="#F59E0B" />
+            </svg>
+          </div>
+          <span class="cd-rating-num">{{ program.rating }}</span>
+          <span class="cd-rating-cnt">({{ program.ratingCount }})</span>
+          <span class="cd-dot">•</span>
+          <span class="cd-info">{{ program.students }} students</span>
+          <span class="cd-dot">•</span>
+          <span class="cd-info">{{ program.totalHours }}</span>
+        </div>
+        <div class="cd-meta-row">
+          <div class="cd-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <path d="M22 10v6M2 10l10-7 10 7M6 21V10M18 21V10" stroke="rgba(255,255,255,0.7)" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            {{ program.level }}
+          </div>
+          <div class="cd-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="4" width="18" height="17" rx="2" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" />
+              <path d="M8 2v4M16 2v4M3 9h18" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            Updated {{ program.lastUpdated }}
+          </div>
+          <div class="cd-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" />
+              <path d="M12 8v4l3 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            {{ program.language }}
+          </div>
+
+        </div>
+      </div>
+
+      <div class="cd-hero-right">
+        <div class="cd-preview-card">
+          <div class="cd-preview-thumb">
+            <video class="cd-preview-video" controls preload="metadata" poster="" #previewVideo>
+              <source src="assets/payment-icons/18069235-uhd_3840_2160_24fps.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div class="cd-play-overlay"
+                 (click)="previewVideo.play(); playOverlay.style.display='none'"
+                 #playOverlay>
+              <div class="cd-play-btn">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <polygon points="5,3 19,12 5,21" fill="white"/>
+                </svg>
+              </div>
+              <span class="cd-preview-label">Preview this program</span>
+            </div>
+          </div>
+          <div class="cd-preview-body">
+            <div class="cd-preview-price">
+              <span class="price-free">Free to start</span>
+              <span class="price-full">₹4,999 / year</span>
+            </div>
+            <button class="cd-enroll-btn" (click)="enroll()">Enroll Now — Start Free</button>
+            <button class="cd-trial-btn" (click)="enroll()">Try 7 Days Free</button>
+            <p class="cd-guarantee">30-Day Money-Back Guarantee</p>
+            <div class="cd-includes">
+              <p class="cd-inc-title">This program includes:</p>
+              <div class="cd-inc-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <polygon points="23,7 16,12 23,17" stroke="#6b7280" stroke-width="1.8" />
+                  <rect x="1" y="5" width="15" height="14" rx="2" stroke="#6b7280" stroke-width="1.8" />
+                </svg>
+                120 hours on-demand video
+              </div>
+              <div class="cd-inc-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="#6b7280"
+                    stroke-width="1.8" />
+                </svg>
+                Downloadable study materials
+              </div>
+              <div class="cd-inc-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#6b7280" stroke-width="1.8"
+                    stroke-linecap="round" />
+                  <circle cx="9" cy="7" r="4" stroke="#6b7280" stroke-width="1.8" />
+                </svg>
+                1-on-1 mentor sessions
+              </div>
+              <div class="cd-inc-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="8" r="6" stroke="#6b7280" stroke-width="1.8" />
+                  <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" stroke="#6b7280" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Completion certificate
+              </div>
+              <div class="cd-inc-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#6b7280" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Full lifetime access
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- MAIN CONTENT -->
+  <div class="cd-main">
+    <div class="cd-main-inner">
+      <div class="cd-content">
+
+        <!-- WHAT YOU'LL LEARN -->
+        <div class="cd-section" id="overview">
+          <h2 class="cd-sec-title">What you'll learn</h2>
+          <div class="cd-learn-grid">
+            <div class="cd-learn-item" *ngFor="let item of learnItems">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M20 6L9 17l-5-5" stroke="#6B4EFF" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>{{ item.text }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SKILLS -->
+        <div class="cd-section">
+          <h2 class="cd-sec-title">Learn the skills that matter most</h2>
+          <div class="cd-skills-grid">
+            <div class="cd-skill-card" *ngFor="let s of skills">
+              <div class="cd-skill-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M22 9L12 5 2 9l10 4 10-4z" stroke="#6B4EFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M6 11.5V16c0 0 2 2 6 2s6-2 6-2v-4.5" stroke="#6B4EFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="cd-skill-info">
+                <span class="cd-skill-title">{{ s.title }}</span>
+                <span class="cd-skill-learners">{{ s.learners }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CURRICULUM -->
+        <div class="cd-section" id="curriculum">
+          <h2 class="cd-sec-title">Certificate path — {{ program.totalCourses }} course series</h2>
+          <p class="cd-sec-sub">Through 204 hands-on activities, you'll build a portfolio of job-ready solutions.</p>
+          <div class="cd-curriculum">
+            <div class="cd-course-row" *ngFor="let course of courses">
+              <div class="cd-course-header-row" (click)="toggleCourse(course.id)">
+                <div class="cd-cnum">{{ course.id }}</div>
+                <div class="cd-clarge-thumb">
+                  <img [src]="course.image" [alt]="course.title"
+                       onerror="this.parentElement.style.background='#e8e4ff'"/>
+                </div>
+                <div class="cd-cinfo">
+                  <h4 class="cd-ctitle">{{ course.title }}</h4>
+                  <p class="cd-csub">Course {{ course.id }} of {{ program.totalCourses }}</p>
+                  <div class="cd-cpills">
+                    <span class="cd-cpill">Course {{ course.id }} of {{ program.totalCourses }}</span>
+                    <span class="cd-cpill star">
+                      <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                        <path d="M7 1l1.5 3 3.3.5-2.4 2.3.6 3.2L7 8.5l-3 1.5.6-3.2L2.2 4.5l3.3-.5z" fill="#F59E0B"/>
+                      </svg>
+                      {{ course.rating }}
+                    </span>
+                    <span class="cd-cpill">{{ course.ratingCount }} ratings</span>
+                    <span class="cd-cpill">{{ course.duration }}</span>
+                  </div>
+                </div>
+                <div class="cd-cchevron" [class.rotated]="course.isExpanded">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="cd-cexpanded" *ngIf="course.isExpanded">
+                <div class="cd-cexp-content">
+                  <div class="cd-cexp-left">
+                    <h4 class="cd-cexp-title">{{ course.title }}</h4>
+                    <ul class="cd-cexp-list">
+                      <li *ngFor="let h of course.highlights">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                          <path d="M20 6L9 17l-5-5" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        {{ h }}
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="cd-cexp-right">
+                    <button class="cd-all-details-btn">All course details →</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TESTIMONIALS -->
+        <div class="cd-section" id="reviews">
+          <h2 class="cd-sec-title">Hear what learners say</h2>
+          <div class="cd-testimonials">
+            <div class="cd-testi-card" *ngFor="let t of testimonials">
+              <div class="cd-testi-stars">
+                <svg *ngFor="let s of getStars(t.rating)" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M7 1l1.5 3 3.3.5-2.4 2.3.6 3.2L7 8.5l-3 1.5.6-3.2L2.2 4.5l3.3-.5z" fill="#F59E0B" />
+                </svg>
+              </div>
+              <p class="cd-testi-quote">"{{ t.quote }}"</p>
+              <div class="cd-testi-author">
+                <div class="cd-testi-avatar" [style.background]="t.avatarColor + '22'" [style.color]="t.avatarColor">
+                  {{ t.initials }}
+                </div>
+                <div>
+                  <div class="cd-testi-name">{{ t.name }}</div>
+                  <div class="cd-testi-role">{{ t.role }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <div class="cd-bottom-cta">
+    <div class="cd-cta-inner">
+      <div class="cd-cta-icon">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <polygon points="16,3 28,11 28,25 16,29 4,25 4,11" stroke="#FFD700" stroke-width="2.2" fill="none" />
+          <text x="11" y="22" font-size="11" font-weight="900" fill="#FFD700" font-family="Arial">Q</text>
+        </svg>
+      </div>
+      <div class="cd-cta-text">
+        <h3>Start your learning journey today</h3>
+        <p>Join 12,400+ students already excelling with Qaroo School Excellence Program</p>
+      </div>
+      <div class="cd-cta-btns">
+        <button class="cd-cta-primary" (click)="enroll()">Enroll Now — Free</button>
+        <button class="cd-cta-secondary" (click)="goBack()">Learn more</button>
+      </div>
+    </div>
+  </div>
+
+</div>

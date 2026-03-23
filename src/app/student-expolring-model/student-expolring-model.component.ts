@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 export interface Advantage {
   id: number;
@@ -191,8 +192,14 @@ export class StudentExpolringModelComponent implements OnInit, OnDestroy {
     return this.programs[this.activeProgram];
   }
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {}
   ngOnDestroy(): void {}
+
+  exploreProgram(): void {
+    this.router.navigate(['/course-details']);
+  }
 
   selectProgram(index: number): void {
     this.activeProgram = index;
