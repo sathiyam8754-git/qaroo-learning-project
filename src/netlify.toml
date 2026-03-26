@@ -1,6 +1,6 @@
 [build]
   
-   command = "npm install -g @angular/cli && ng build"
+   command = "npm install && npm run build:live"
    publish = "dist/angular"
    base ="/"
 
